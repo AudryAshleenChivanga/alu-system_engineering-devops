@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Check if expect is installed
+if ! command -v expect &> /dev/null
+then
+    echo "The script requires 'expect' but it's not installed. Install it and rerun the script."
+    exit 1
+fi
+
+# Use expect to handle interactive passphrase input
+expect << EOF
+# Call ssh-keygen with specified options
+spawn ssh-keygen -t rsa -b 4096 -f school
+
+# Handle passphrase prompt
+expect "Enter passphrase (empty for no passphrase):"
+send "betty\r"
+expect "Enter same passphrase again:"
+send "betty\r"
+
+# Complete the process
+expect eof
+EOF
+
