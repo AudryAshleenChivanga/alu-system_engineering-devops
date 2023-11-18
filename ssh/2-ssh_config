@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
-# This script configures the SSH client to use a specific private key and disables password authentication.
+# SSH CONFIG
 
-# Create or update the SSH config file
-echo "Host *" > ~/.ssh/config
-echo "    IdentityFile ~/.ssh/school" >> ~/.ssh/config
-echo "    PasswordAuthentication no" >> ~/.ssh/config
+Include /etc/ssh/ssh_config.d/*.conf
 
-# Ensure the SSH config file has the correct permissions
-chmod 600 ~/.ssh/config
-
-# Add a newline at the end of the file (important for UNIX/Linux systems)
-echo "" >> ~/.ssh/config
-
-echo "SSH client configured successfully."
-
+Host *
+	PasswordAuthentication no
