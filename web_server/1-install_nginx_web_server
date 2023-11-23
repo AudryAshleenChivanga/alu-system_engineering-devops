@@ -1,14 +1,29 @@
 #!/usr/bin/env bash
-# This program installs nginx on my web server and configures a custom HTML page
+# Installing nginx on a server and configuring a simple server
 
-ssh -i ~/.ssh/school -T ubuntu@3.85.169.89 << 'EOSSH'
-sudo apt update
-sudo apt install nginx -y
-sudo /etc/init.d/nginx start
+# Updating packages
+sudo apt-get update -y && sudo apt-get upgrade -y
 
-# Create a custom HTML file in the default Nginx directory
-echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
+# Installing nginx
+sudo apt-get install nginx -y
 
-sudo update-rc.d -f nginx defaults
-sudo /etc/init.d/nginx status
-EOSSH
+# Creating an index html file
+echo "Holberton School" | sudo tee /var/www/html/index.html
+
+# Altering the server config to create a server
+echo "
+events {
+
+}
+
+http {
+	server {
+		listen 80;
+		index index.html;
+		root /var/www/html;
+	}
+}
+"  | sudo tee /etc/nginx/nginx.conf
+
+# Restarting the server with the new config
+sudo service nginx restart
