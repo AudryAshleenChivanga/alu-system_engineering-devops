@@ -1,21 +1,8 @@
 #!/usr/bin/env bash
-# This script installs nginx on a remote server and configures a simple web server
+#This is a programn that installs nginx into my web server
 
-REMOTE_HOST="3.85.169.89"
-REMOTE_USER="ubuntu"
-SSH_KEY="~/.ssh/school"  # Use your specific SSH key path
-
-ssh -i $SSH_KEY -T $REMOTE_USER@$REMOTE_HOST << 'EOSSH'
-    # Updating packages
-    sudo apt-get update -y && sudo apt-get upgrade -y
-
-    # Installing nginx
-    sudo apt-get install nginx -y
-
-    # Creating an index html file with the required content
-    echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
-
-    # Restarting the nginx server without using systemctl
-    sudo service nginx restart
-EOSSH
-
+sudo apt update
+sudo apt install nginx -y
+sudo bash -c 'echo "Holberton School" > /var/www/html/index.html'
+sudo /etc/init.d/nginx restart
+sudo service nginx restart
