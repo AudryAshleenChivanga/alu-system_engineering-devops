@@ -2,8 +2,7 @@
 # Installing nginx on a server and configuring a simple server
 
 # Updating packages
-ssh -i ~/.ssh/school -T ubuntu@3.85.169.89 << 'EOSSH'
-	sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 # Installing nginx
@@ -29,4 +28,3 @@ http {
 
 # Restarting the server with the new config
 sudo service nginx restart
-EOSSH
