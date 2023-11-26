@@ -10,7 +10,7 @@ sudo apt-get -y install haproxy
 # Setup a proxy
 sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
-sudo sed -i "$ a\listen 5704-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 5704-web-02 18.232.173.253 check\n\tserver 5704-web-01 54.90.129.171 check" /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a\listen 5704-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 5795-web-02 174.129.50.217 check\n\tserver 5795-web-01 3.85.169.89 check" /etc/haproxy/haproxy.cfg
 
 # Start the proxy
 sudo service haproxy start
