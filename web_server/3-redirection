@@ -2,7 +2,6 @@
 # Creating a server with a redirect
 
 # Updating all packages
-ssh -i ~/.ssh/school ubuntu@3.85.169.89 <<EOSSH
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 # Install Nginx
@@ -31,4 +30,4 @@ http {
 
 # Reload nginx
 sudo service nginx restart
-EOSSH
+
