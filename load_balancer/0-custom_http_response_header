@@ -2,7 +2,8 @@
 #config nginx
 
 
-sudo apt remove --purge nginx nginx-full nginx-common -y
+ssh -i ~/.ssh/server2 ubuntu@54.91.1.41 <<'EOSSH'
+apt remove --purge nginx nginx-full nginx-common -y
 sudo apt update
 sudo apt install nginx -y
 sudo touch /var/www/html/index.html
@@ -31,3 +32,4 @@ printf %s 'server {
 			   ' | sudo tee /etc/nginx/sites-available/default
 
 sudo service nginx restart
+EOSSH
