@@ -1,1 +1,8 @@
+#!/usr/bin/env bash
+# Removing
 
+ssh -i ~/.ssh/server3  ubuntu@52.91.38.59 << 'EOSSH'
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+kill "$(pgrep 'nginx' | head -1)"
+EOSSH
